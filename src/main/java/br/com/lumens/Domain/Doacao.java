@@ -18,7 +18,7 @@ public class Doacao {
         ALIMENTO, ROUPA, EQUIPAMENTO, MOVEL, OUTRO;
     }
     public enum Condicao_doacao{
-        novo, bem_conservado, pouco_conservado, em_condicoes;
+        novo, bem_conservado, pouco_conservado, em_condicoes, nulo;
     }
 
     private Long id_doacao;
@@ -31,5 +31,6 @@ public class Doacao {
     private Condicao_doacao condicao_doacao;
     private Date tempo_uso;
     private String image_url;
+    private Usuario usuario;
 
 }
