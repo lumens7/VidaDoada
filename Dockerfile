@@ -1,14 +1,12 @@
-# Usa uma imagem com Java já instalada
-FROM openjdk:17-jdk-slim
-
-# Define o diretório de trabalho dentro do container
+# Etapa 1: build com Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copia o JAR gerado pelo Spring Boot para dentro do container
-COPY target/VidaDoada-0.0.1-SNAPSHOT.jar app.jar
-
-# Expõe a porta que o Spring Boot usa (padrão 8080)
+# Etapa 2: imagem final com apenas o JAR
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/VidaDoada-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# Comando para rodar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
