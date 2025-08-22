@@ -11,16 +11,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "endereco")
-public class Endereco {
+@Table(name = "usuario_role")
+public class UsuarioRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_endereco;
-    private String rua;
-    private String bairro;
-    private Integer numero;
-    private String cep;
-    private String latitude;
-    private String longitude;
+    private Long id;
+
+    private Long usuarioId;
+
+    private Long roleId;
 }

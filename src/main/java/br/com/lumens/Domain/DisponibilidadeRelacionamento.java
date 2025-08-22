@@ -11,16 +11,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "endereco")
-public class Endereco {
+@Table(name = "disponibilidade_relacionamento")
+public class DisponibilidadeRelacionamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_endereco;
-    private String rua;
-    private String bairro;
-    private Integer numero;
-    private String cep;
-    private String latitude;
-    private String longitude;
+    private Long id_disponibilidade_relacionamento;
+    private Long id_entidade;
+    private Long id_disponibilidade;
+
 }

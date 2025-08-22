@@ -1,5 +1,6 @@
 package br.com.lumens.Domain;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,8 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "doacao")
 public class Doacao {
 
     public enum Classe_doacao{
@@ -20,7 +23,11 @@ public class Doacao {
     public enum Condicao_doacao{
         novo, bem_conservado, pouco_conservado, em_condicoes, nulo;
     }
-
+    public enum StatusDoacao{
+        CADASTRADA, RECOLHIDA, ESPERA_ENTREGA, EMTREGA, FINALIZADA;
+    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_doacao;
     private String nome;
     private String descricao;
@@ -31,6 +38,9 @@ public class Doacao {
     private Condicao_doacao condicao_doacao;
     private Date tempo_uso;
     private String image_url;
+
+    @ManyToOne
     private Usuario usuario;
+    private StatusDoacao statusDoacao;
 
 }
